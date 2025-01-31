@@ -337,4 +337,6 @@ def echo_ai():
             "network": network if 'network' in locals() else None
         }), 500
 
-app = app 
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"status": "API is running"}) 
