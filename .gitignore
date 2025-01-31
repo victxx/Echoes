@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+__pycache__/
+.env
+.env.local
+.env.*.local
+
+# Build files
+.next/
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Secrets
+vercel.json
