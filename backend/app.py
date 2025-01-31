@@ -303,7 +303,7 @@ def echo_ai():
         wallet = request.args.get("wallet")
         if not wallet:
             return jsonify({"error": "Wallet address is required"}), 400
-            
+        
         network = request.args.get("network", "mantle-testnet").lower()
         
         print(f"Processing request for wallet: {wallet} on network: {network}")
