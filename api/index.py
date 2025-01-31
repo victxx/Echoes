@@ -1,5 +1,3 @@
-load_dotenv('.env')  # Actualiza la ruta del .env 
-
 import traceback
 import requests
 import openai
@@ -12,7 +10,9 @@ from ankr import AnkrWeb3
 from ankr.types import GetAccountBalanceRequest, GetNFTsByOwnerRequest, GetInteractionsRequest, GetBlockchainStatsRequest  # Updated imports
 from ankr.providers import MultichainHTTPProvider  # Add this import
 
-load_dotenv()
+# Las variables de entorno ya están disponibles en Vercel
+ANKR_API_KEY = os.getenv("ANKR_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Add debug prints
 print("Current working directory:", os.getcwd())
@@ -21,7 +21,6 @@ print("ANKR_API_KEY:", os.getenv("ANKR_API_KEY")[:10] + "..." if os.getenv("ANKR
 print("OPENAI_API_KEY:", "***" if os.getenv("OPENAI_API_KEY") else None)
 
 # Initialize Ankr SDK with API key
-ANKR_API_KEY = os.getenv("ANKR_API_KEY")
 if not ANKR_API_KEY:
     raise ValueError("ANKR_API_KEY not found in environment variables")
 
@@ -29,7 +28,7 @@ if not ANKR_API_KEY:
 ankr_w3 = AnkrWeb3(ANKR_API_KEY)
 
 client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY")
+    api_key=OPENAI_API_KEY
 )
 
 # Network configurations with Ankr blockchain mappings
@@ -338,6 +337,4 @@ def echo_ai():
             "network": network if 'network' in locals() else None
         }), 500
 
-if __name__ == "__main__":
-    port = int(os.getenv("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+app = app 
